@@ -1,0 +1,41 @@
+[gd_scene load_steps=7 format=3 uid="uid://cimiwl15porao"]
+
+[ext_resource type="PackedScene" uid="uid://b88071qr8a1wl" path="res://Models/models.blend" id="1_8iymp"]
+[ext_resource type="Script" path="res://spieler.gd" id="2_jehgu"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_xoqx2"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_qiyoo"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_b4f3t"]
+size = Vector2(20, 20)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_41o5n"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0.487261, -0.843046, 0.227706, 0.112162, 0.319014, 0.94109, -0.163032, 7.28826, -1.58416)
+shadow_enabled = true
+
+[node name="models" parent="." instance=ExtResource("1_8iymp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.429353, 0.319572, 0.876802)
+
+[node name="Spieler" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.498675, 0.0227024, -0.028419, -0.0221665, 0.499408, 0.00998951, 0.028839, -0.00870315, 0.499092, 0.0862868, 0.0455178, 8.81744)
+mesh = SubResource("CapsuleMesh_xoqx2")
+script = ExtResource("2_jehgu")
+
+[node name="Nase" type="MeshInstance3D" parent="Spieler"]
+transform = Transform3D(0.487243, 0.0912831, 0.0652803, 0.0743898, -0.0449445, -0.492388, -0.0840255, 0.489538, -0.0573788, -0.0723401, 0.342044, -0.736456)
+mesh = SubResource("CapsuleMesh_qiyoo")
+
+[node name="CharacterBody3D" type="CharacterBody3D" parent="Spieler"]
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0304934, 2.94528, 14.9205)
+
+[node name="Boden" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0.000820305, 0, -0.000820305, 1, 1.82916, -0.732972, 2.89487)
+mesh = SubResource("PlaneMesh_b4f3t")
+surface_material_override/0 = SubResource("StandardMaterial3D_41o5n")
